@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaggi Sidhu | Premium Work From Home System</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --bg-dark:#020617;
+    --card-bg:rgba(30, 41, 59, 0.4);
+    --accent-gold:#fbbf24;
+    --accent-purple:#8b5cf6;
+    --text-main:#f8fafc;
+    --text-dim:#94a3b8;
+    --gradient:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif; scroll-behavior: smooth;}
+body{background-color:var(--bg-dark);color:var(--text-main);line-height:1.6;overflow-x:hidden; padding-bottom: 80px;}
+
+/* Background Particle Canvas */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+/* Navigation */
+.nav-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 30px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10000;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.logo { font-weight: 800; font-size: 1.3rem; color: var(--accent-gold); letter-spacing: 1px; }
+.nav-links { display: flex; gap: 25px; }
+.nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; }
+.nav-links a:hover { color: var(--accent-gold); }
+
+/* Sticky Bottom Action Bar */
+.sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(15px);
+    padding: 14px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--accent-gold);
+    z-index: 9999;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.6);
+}
+.sticky-price { font-size: 1.2rem; font-weight: 800; color: var(--accent-gold); }
+.sticky-btn {
+    background: var(--gradient);
+    color: #000;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.6); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(251, 191, 36, 0); }
+    100% { transform: scale(1); }
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+
+/* Hero Section */
+.hero{text-align:center;padding:140px 20px 80px;background: radial-gradient(circle at top, #1e293b 0%, #020617 100%);}
+.hero h1{font-size:3.2rem;font-weight:800;margin-bottom:20px;background:linear-gradient(to right,#fbbf24,#f59e0b,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1; letter-spacing: -1px;}
+.instructor-tag{background:rgba(251,191,36,0.1);display:inline-block;padding:8px 24px;border-radius:50px;border:1px solid var(--accent-gold);color:var(--accent-gold);font-weight:600;margin-bottom:25px; font-size: 0.85rem; letter-spacing: 1px;}
+
+.price-card{background:var(--card-bg);padding:30px;border-radius:28px;display:inline-block;backdrop-filter: blur(12px);border:1px solid rgba(255,255,255,0.1); margin-top: 20px;}
+.old-price{text-decoration:line-through;color:var(--text-dim);font-size:1.2rem; margin-right: 10px;}
+.new-price{font-size:3.5rem;font-weight:800;color:var(--accent-gold);display:block;}
+.discount-badge{background:#ef4444;color:white;padding:5px 15px;border-radius:8px;font-size:0.9rem;font-weight:700; vertical-align: middle;}
+
+/* Video & Features */
+.reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.video-container{position:relative;width:100%;padding-bottom:56.25%;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 30px 60px -12px rgba(0,0,0,0.7);margin:50px 0;}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
+
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin:60px 0;}
+.feature-card{background:var(--card-bg);padding:40px 30px;border-radius:24px;text-align:center;backdrop-filter: blur(10px);border:1px solid rgba(255,255,255,0.05);transition:0.4s;}
+.feature-card:hover{border-color:var(--accent-gold);background:rgba(251, 191, 36, 0.05);}
+.feature-card i{font-size:2.5rem;margin-bottom:20px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* Reviews Marquee */
+.reviews-section{padding:80px 0; background: rgba(255,255,255,0.02); overflow: hidden;}
+.marquee{display:flex;width:200%;animation:scroll 40s linear infinite; gap: 20px;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.review-card{background:var(--card-bg);min-width:340px;padding:30px;border-radius:24px;border:1px solid rgba(255,255,255,0.1);}
+
+/* FAQ Section */
+.faq-container{max-width: 850px; margin: 80px auto; padding: 0 20px;}
+.faq-item{background: var(--card-bg); margin-bottom: 15px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;}
+.faq-btn{width: 100%; padding: 22px 30px; background: none; border: none; color: white; text-align: left; font-size: 1.05rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
+.faq-content{max-height: 0; overflow: hidden; transition: 0.4s ease; padding: 0 30px; color: var(--text-dim); font-size: 1rem;}
+.faq-item.active .faq-content{max-height: 250px; padding-bottom: 25px;}
+.faq-item.active { border-color: var(--accent-gold); }
+
+/* Payment Section */
+.payment-section{background:linear-gradient(180deg, rgba(30,41,59,0.8) 0%, rgba(2,6,23,0.9) 100%);padding:60px 30px;border-radius:40px;border:1px solid var(--accent-gold);margin:80px 0;text-align:center;}
+.qr-code{width:240px;height:240px;margin:25px auto;background:white;padding:15px;border-radius:20px;box-shadow: 0 0 40px rgba(251,191,36,0.3);}
+.qr-code img{width:100%;}
+.upi-btn{background:#6366f1;color:white;padding:18px 40px;border-radius:50px;text-decoration:none;font-weight:700;display:inline-block;margin:25px 0; font-size: 1rem; letter-spacing: 1px;}
+.payment-form{max-width:480px;margin:40px auto;text-align:left; background: rgba(0,0,0,0.3); padding: 35px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05);}
+.input-group label{display:block;font-size:0.85rem;color:var(--text-dim);margin-bottom:10px; font-weight: 600; text-transform: uppercase;}
+.input-group input{width:100%;padding:16px;border-radius:14px;border:1px solid #334155;background:#020617;color:white;outline:none; margin-bottom: 25px; transition: 0.3s;}
+.input-group input:focus{border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(251,191,36,0.2);}
+.submit-btn{width:100%;padding:20px;border-radius:14px;border:none;background:var(--gradient);color:#000;font-weight:800;font-size:1.2rem;cursor:pointer; text-transform: uppercase;}
+
+@media(max-width:768px){
+    .hero h1{font-size:2.2rem;}
+    .nav-links { display: none; }
+    .new-price{font-size:2.8rem;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav class="nav-header">
+    <div class="logo">JAGGI SIDHU</div>
+    <div class="nav-links">
+        <a href="#">Overview</a>
+        <a href="#features">Benefits</a>
+        <a href="#reviews">Testimonials</a>
+        <a href="#faq">Support</a>
+        <a href="#pay" style="color:var(--accent-gold)">Enroll Now</a>
+    </div>
+</nav>
+
+<div class="sticky-bar">
+    <div class="sticky-price">₹199 <span style="font-size:0.8rem; color:var(--text-dim); text-decoration:line-through; margin-left:8px;">₹499</span></div>
+    <a href="#pay" class="sticky-btn">JOIN SYSTEM 🚀</a>
+</div>
+
+<section class="hero">
+    <div class="container">
+        <span class="instructor-tag"><i class="fas fa-crown"></i> LEAD INSTRUCTOR: JAGGI SIDHU SIR</span>
+        <h1>Master The Art of <br>Digital Income from Home</h1>
+        <p style="color: var(--text-dim); max-width: 650px; margin: 0 auto; font-size: 1.1rem;">Turn your smartphone into a money-making machine. No experience or high investment required.</p>
+        <div class="price-card reveal">
+            <span class="old-price">₹499</span> <span class="discount-badge">SAVE 60%</span>
+            <span class="new-price">₹199</span>
+            <span style="color:#10b981; font-weight:800; font-size:0.85rem; text-transform:uppercase; margin-top:10px; display:block;">🔥 Limited Time Founder's Offer</span>
+        </div>
+    </div>
+</section>
+
+<div class="container reveal" id="features">
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/s1ItZYmL4Mk?autoplay=1&mute=1&rel=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card reveal"><i class="fas fa-rocket"></i><h3>Proven Strategy</h3><p style="color:var(--text-dim);">Learn the exact blueprint used by thousands of successful students.</p></div>
+        <div class="feature-card reveal"><i class="fas fa-mobile-screen"></i><h3>Mobile-Only</h3><p style="color:var(--text-dim);">Designed specifically for smartphone users. No laptop needed.</p></div>
+        <div class="feature-card reveal"><i class="fas fa-users"></i><h3>VIP Community</h3><p style="color:var(--text-dim);">Get exclusive access to our private mentorship support group.</p></div>
+    </div>
+</div>
+
+<section class="reviews-section reveal" id="reviews">
+    <h2 style="text-align:center; font-size:2.2rem; margin-bottom:40px; color:var(--accent-gold);">⭐ REAL STUDENT REVIEWS</h2>
+    <div class="marquee">
+        <div class="review-card"><strong>Rahul Sharma</strong><p>"Sach bolu to mujhe laga tha ye bhi ek normal course hoga, lekin strategies kaafi practical thi. 1st week me result mil gaya."</p></div>
+        <div class="review-card"><strong>Pooja Verma</strong><p>"Main housewife hoon aur ghar baithe income chah rahi thi. Ab daily ₹300–₹400 earn kar leti hoon."</p></div>
+        <div class="review-card"><strong>Aman Gupta</strong><p>"Step-by-step explanation is the best part. Beginner ke liye perfect hai."</p></div>
+        <div class="review-card"><strong>Neha Singh</strong><p>"Mainne sirf curiosity me join kiya, ab ye mera side income source ban gaya hai."</p></div>
+    </div>
+</section>
+
+<div class="faq-container reveal" id="faq">
+    <h2 style="text-align:center; font-size:2.2rem; margin-bottom:40px; color:var(--accent-gold);">❓ FREQUENTLY ASKED QUESTIONS</h2>
+    <div class="faq-item">
+        <button class="faq-btn">When will I get access? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-content">Access is granted instantly after payment verification. You will receive the dashboard link via WhatsApp/Email.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-btn">Is this suitable for beginners? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-content">Absolutely! This course starts from absolute zero. No prior technical skills are required.</div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-btn">What if I have doubts? <i class="fas fa-chevron-down"></i></button>
+        <div class="faq-content">You will get access to our VIP Telegram/WhatsApp community where our team helps you with every step.</div>
+    </div>
+</div>
+
+<div class="container reveal" id="pay">
+    <section class="payment-section">
+        <h2 style="font-size:2.5rem; margin-bottom:10px;">🚀 Start Your Journey Today</h2>
+        <p style="color: var(--text-dim); margin-bottom: 30px;">Scan the QR Code below to pay (₹199)</p>
+        <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=hyysumitx@fam&pn=JaggiSidhuCourse&cu=INR&am=199" alt="UPI QR"></div>
+        <a href="upi://pay?pa=hyysumitx@fam&pn=JaggiSidhuCourse&cu=INR&am=199" class="upi-btn"><i class="fas fa-wallet"></i> PAY VIA ANY UPI APP</a>
+
+        <div class="payment-form">
+            <div class="input-group"><label>Full Name</label><input type="text" id="userName" placeholder="Enter your name"></div>
+            <div class="input-group"><label>12-Digit Transaction UTR ID</label><input type="text" id="utr" placeholder="Enter UTR Number" maxlength="12"></div>
+            <button class="submit-btn" onclick="verifyPayment()">VERIFY & UNLOCK COURSE</button>
+        </div>
+    </section>
+</div>
+
+<footer style="text-align:center; padding: 60px; border-top: 1px solid rgba(255,255,255,0.05); color:var(--text-dim);">
+    <p>© 2026 Jaggi Sidhu Masterclass | All Rights Reserved</p>
+    <p style="font-size:0.8rem; margin-top:10px;">Risk Disclaimer: Earning depends on your hard work and effort.</p>
+</footer>
+
+<div id="toast" style="visibility:hidden; position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:#10b981; color:white; padding:20px; border-radius:15px; z-index:100000; font-weight:800;">Processing...</div>
+
+<script>
+// Background Particle Animation
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+    }
+    draw() {
+        ctx.fillStyle = 'rgba(251, 191, 36, 0.3)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+function init() {
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+}
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+}
+init(); animate();
+
+// Scroll Animation Trigger
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
+    }
+}
+window.addEventListener("scroll", reveal);
+window.onload = reveal;
+
+// FAQ Toggle
+document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('active');
+    });
+});
+
+// Mock Payment
+function verifyPayment(){
+    const utr=document.getElementById('utr').value;
+    const name=document.getElementById('userName').value;
+    const toast=document.getElementById("toast");
+    if(name.length < 3){ alert("Please enter valid name"); return; }
+    if(utr.length === 12){
+        toast.style.visibility = "visible";
+        toast.innerText = "Payment Verified! Redirecting...";
+        setTimeout(() => { window.scrollTo(0,0); toast.style.visibility="hidden"; alert("Access Granted! Welcome to the team."); }, 3000);
+    } else { alert("Enter 12-digit UTR ID"); }
+}
+
+const marquee = document.querySelector('.marquee');
+marquee.innerHTML += marquee.innerHTML;
+</script>
+
+</body>
+  </html>
+                                                                                                 
